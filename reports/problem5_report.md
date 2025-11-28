@@ -1,0 +1,1 @@
+If the semaphore is initialized to 1, the program behaves like there is only one printer, forcing strict one-at-a-time access. If it is initialized to a value larger than the actual number of printers, more than K threads will enter the printing section simultaneously, violating the resource limit and making the simulation incorrect.
