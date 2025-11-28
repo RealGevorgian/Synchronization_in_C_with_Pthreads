@@ -1,8 +1,8 @@
 # Synchronization with POSIX Threads
 
-This repository contains solutions to the Operating Systems homework focused on thread synchronization using POSIX threads, mutexes, spinlocks, and semaphores. The assignment consists of five problems, each demonstrating a fundamental synchronization technique. All implementations are written in C and tested on Ubuntu Server.
+This repository contains solutions to an Operating Systems homework focused on multithreading and synchronization using POSIX threads, mutexes, spinlocks, and semaphores. Each of the five problems highlights a core synchronization concept through practical C programs. The repository follows a clean structure with dedicated folders for source code, reports, and output screenshots.
 
-The project is organized into clearly separated folders for source files, reports, and execution output screenshots.
+Repository link: [https://github.com/RealGevorgian/Synchronization_in_C_with_Pthreads.git](https://github.com/RealGevorgian/Synchronization_in_C_with_Pthreads.git)
 
 ---
 
@@ -47,12 +47,12 @@ Synchronization_in_C_with_Pthreads/
 
 ## Requirements
 
-* Ubuntu Server or any Linux environment supporting POSIX threads
+* Ubuntu Server or any Linux distribution with POSIX threads support
 * GCC compiler
 * pthread library
-* POSIX semaphores (`<semaphore.h>`)
+* POSIX semaphores (`#include <semaphore.h>`)
 
-Compile using GCC with pthread support:
+Build any problem using:
 
 ```
 gcc -pthread source_file.c -o executable
@@ -60,39 +60,72 @@ gcc -pthread source_file.c -o executable
 
 ---
 
-## Problem Summaries
+## Problem Summaries & Output Examples
 
 ### Problem 1: Broken Counter (Race Conditions, Mutex, Spinlock)
 
-A multi-threaded counter is incremented by multiple threads. Three versions are implemented:
+A shared counter is incremented by multiple threads. Three approaches are used:
 
 1. No synchronization
-2. Mutex-protected increment
-3. Spinlock-protected increment
+2. Mutex-based synchronization
+3. Spinlock-based synchronization
 
-The program prints the expected and actual counter values. The purpose is to demonstrate race conditions and how mutual exclusion fixes them.
+This demonstrates the race condition in the unsynchronized version and how mutual exclusion resolves it.
+
+**Example Outputs:**
+
+![None Output](screenshots/problem1_none_output.png)
+![Mutex Output](screenshots/problem1_mutex_output.png)
+![Spin Output](screenshots/problem1_spin_output.png)
+
+---
 
 ### Problem 2: Bank Account (Mutex vs Spinlock, Short vs Long Critical Sections)
 
-Simulates deposit and withdrawal threads operating on a shared bank balance. The program supports two synchronization modes (mutex and spinlock) and two critical-section modes (short and long using `usleep`). Execution time is measured for comparison.
+Deposit and withdrawal threads modify a shared balance. Two lock types (mutex and spinlock) and two critical-section lengths (short and long) are tested. Execution times highlight performance differences under contention.
+
+**Example Outputs:**
+
+![Mutex Short](screenshots/problem2_mutex_short.png)
+![Mutex Long](screenshots/problem2_mutex_long.png)
+![Spin Short](screenshots/problem2_spin_short.png)
+![Spin Long](screenshots/problem2_spin_long.png)
+
+---
 
 ### Problem 3: Bounded Buffer (Producer–Consumer)
 
-Implements a classic producer–consumer system with a fixed-size circular buffer. Synchronization uses two semaphores (full and empty slots) and a mutex protecting buffer access.
+Implements a fixed-size circular buffer shared between producers and consumers. Semaphores coordinate buffer availability, while a mutex protects shared indices and buffer state.
+
+**Example Output:**
+
+![Producer Consumer](screenshots/problem3_producer_consumer.png)
+
+---
 
 ### Problem 4: Ordered Printing (A → B → C)
 
-Three threads print in a strict order using only semaphores to enforce sequencing. No busy-waiting or sleep-based ordering is used.
+Three threads print in a strict sequence enforced using semaphores only. This ensures deterministic ordered execution without relying on timing or busy-waiting.
+
+**Example Output:**
+
+![Ordered ABC](screenshots/problem4_ordered_abc.png)
+
+---
 
 ### Problem 5: Printer Pool (Counting Semaphore)
 
-Simulates a pool of identical printers using a counting semaphore. Only a limited number of threads can enter the printing section simultaneously.
+Simulates a pool of identical printers using a counting semaphore. Only a limited number of threads can print simultaneously, demonstrating controlled access to a finite resource.
+
+**Example Output:**
+
+![Printers Pool](screenshots/problem5_printers_pool.png)
 
 ---
 
 ## How to Compile
 
-Compile each problem individually from the `src/` folder. Examples:
+Compile any problem directly from the `src/` directory, for example:
 
 ```
 gcc -pthread src/problem1_counter.c -o problem1_counter
@@ -108,19 +141,22 @@ If a Makefile is added later, instructions will be updated accordingly.
 
 ## Reports
 
-Each problem has a dedicated Markdown report in the `reports/` directory. Reports contain short explanations required by the assignment along with execution screenshots located in the `screenshots/` folder.
+Each problem has a corresponding Markdown report under the `reports/` directory. These include explanations, observations, and screenshots from the associated program runs.
 
 ---
 
 ## Notes
 
-* All programs are tested on Ubuntu Server.
-* Only POSIX-compliant synchronization primitives are used.
-* Code is formatted in a consistent and readable style.
-* Screenshot filenames match the program outputs for easier report referencing.
+* All programs were verified on Ubuntu Server.
+* Only legitimate POSIX synchronization mechanisms were used.
+* Source code follows consistent formatting for readability.
+* Output screenshots match the expected results for each problem.
 
 ---
 
 ## Author
 
-Assignment completed as part of an Operating Systems course. The repository contains original implementations demonstrating understanding of synchronization and multi-threaded programming fundamentals.
+Gevorg Gevorgyan
+
+The implementations reflect a solid understanding of synchronization, multithreading, and concurrent program design.
+
