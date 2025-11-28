@@ -1,0 +1,12 @@
+# Ignore compiled executables
+src/problem1_counter
+src/problem2_bank
+src/problem3_bounded_buffer
+src/problem4_ordered_abc
+src/problem5_printer_pool
+
+# Generic rules
+*.o
+*.out
+*.exe
+bin/
