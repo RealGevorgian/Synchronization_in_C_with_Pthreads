@@ -1,0 +1,1 @@
+The semaphores ensure that producers do not write into a full buffer and consumers do not read from an empty buffer, but multiple threads can still access the shared indices and buffer array at the same time. The mutex is needed to make the updates to buffer, in_pos, out_pos, and buffer_count atomic with respect to other threads, preventing inconsistent states or lost updates.
