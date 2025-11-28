@@ -1,0 +1,1 @@
+Using sleep() is unreliable because the operating system scheduler does not guarantee when a sleeping thread will wake up or whether another thread will run at the expected time. Sleep durations only approximate timing and cannot enforce precise ordering, while semaphores provide deterministic control over execution order.
